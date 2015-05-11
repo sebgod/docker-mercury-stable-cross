@@ -3,7 +3,7 @@ FROM sebgod/mercury-stable:latest
 MAINTAINER Sebastian Godelet <sebastian.godelet@outlook.com>
 ENV MERCURY_STABLE_CROSS_VERSION $MERCURY_STABLE_VERSION-x86_64-w64-mingw32
 ENV MERCURY_STABLE_CROSS_PREFIX $MERCURY_STABLE_PREFIX-x86_64-w64-mingw32
-RUN tar --strip 1 -x -v -f $MERCURY_TMP/tarballs/$MERCURY_STABLE_TARGZ \
+RUN tar --strip 1 -x -f $MERCURY_TMP/tarballs/$MERCURY_STABLE_TARGZ \
     && aclocal -I m4    \
     && autoconf         \
     && (sh tools/configure_mingw_cross              \
@@ -17,6 +17,6 @@ RUN tar --strip 1 -x -v -f $MERCURY_TMP/tarballs/$MERCURY_STABLE_TARGZ \
         && ln -s $MERCURY_STABLE_PREFIX/bin/mercury_compile \
                  $MERCURY_STABLE_CROSS_PREFIX/bin \
         && rm -fR *         \
-        ) || (cat build.log & false)
+        ) || (tail build.log & false)
 ENV PATH ${MERCURY_STABLE_CROSS_PREFIX}/bin:$PATH_ORIG
 ENTRYPOINT ["mmc"]
