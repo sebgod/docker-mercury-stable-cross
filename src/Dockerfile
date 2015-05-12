@@ -3,6 +3,7 @@ FROM sebgod/mercury-stable:<VERSION>
 MAINTAINER Sebastian Godelet <sebastian.godelet@outlook.com>
 ENV MERCURY_STABLE_CROSS_VERSION $MERCURY_STABLE_VERSION-<CROSS_VERSION>
 ENV MERCURY_STABLE_CROSS_PREFIX $MERCURY_STABLE_PREFIX-<CROSS_VERSION>
+WORKDIR $MERCURY_TMP/mercury
 RUN tar --strip 1 -x -f $MERCURY_TMP/tarballs/$MERCURY_STABLE_TARGZ \
     && aclocal -I m4    \
     && autoconf         \
