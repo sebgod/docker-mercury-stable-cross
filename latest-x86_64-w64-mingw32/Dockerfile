@@ -19,5 +19,5 @@ RUN tar --strip 1 -x -f $MERCURY_TMP/tarballs/$MERCURY_STABLE_TARGZ \
                  $MERCURY_STABLE_CROSS_PREFIX/bin \
         && rm -fR *         \
         ) || (tail build.log & false)
-ENV PATH ${MERCURY_STABLE_CROSS_PREFIX}/bin:$PATH_ORIG
+ENV PATH ${MERCURY_STABLE_CROSS_PREFIX}/bin:$PATH
 ENTRYPOINT ["mmc"]
